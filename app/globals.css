@@ -1,26 +1,57 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white-100: #ffffff;
+  --white-200: #e3e7ec;
+
+  --blue-200: #1c2434;
+  --blue-100: #212b36;
+
+  --gray-200: #333a48;
+  --gray-100: #637381;
+
+  --foreground-dark-gray: #8a99af;
+
+  --radius: 0.625rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-white-100: var(--white-100);
+  --color-white-200: var(--white-200);
+
+  --color-background-dark: var(--background-dark);
+
+  --color-header-light: var(--header-light);
+
+  --color-blue-200: var(--blue-200);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+
+  --color-foreground-side-light: var(--foreground-sidebar-light);
+  --color-foreground-dark-gray: var(--foreground-dark-gray);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background-dark: #171717;
+}
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-white-200 w-full;
+  }
 }
