@@ -13,9 +13,9 @@ datasource db {
   provider = "postgresql"
 }
 
-model department{
-  id         uuid     @id @default(uuid())
-  name        String   @unique
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+model department {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
