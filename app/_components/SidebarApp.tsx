@@ -1,3 +1,4 @@
+import { Building, ClipboardList, LayoutDashboard, Users } from "lucide-react";
 import SidebarButton from "./SidebarButton";
 import {
   Sidebar,
@@ -5,16 +6,15 @@ import {
   SidebarHeader,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { LayoutDashboard, Users, ClipboardList, Building } from "lucide-react";
 
 export default function SidebarApp() {
   return (
     <div>
-      <Sidebar className="bg-blue-200 text-white-100">
-        <SidebarHeader className="text-center text-3xl font-bold py-8">
+      <Sidebar className="text-white-100 bg-blue-200">
+        <SidebarHeader className="py-8 text-center text-3xl font-bold">
           IrisApp
         </SidebarHeader>
-        <SidebarContent className="text-gray-100 ml-1">
+        <SidebarContent className="ml-1 text-gray-100">
           <SidebarMenuItem>
             <SidebarButton href="/">
               <LayoutDashboard />
