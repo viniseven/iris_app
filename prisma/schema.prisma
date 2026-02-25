@@ -24,11 +24,11 @@ model department {
 model collaborator {
   id             String     @id @default(uuid())
   name           String
-  second_name    String
+  secondName    String
   afiliationType afiliationType @default(ASELC)
   departmentId   String
   department     department @relation(fields: [departmentId], references: [id])
-  role           Role       @default(FACILITADOR)
+  role           Role       @default(COLABORADOR)
   isActive       Boolean    @default(true)
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
