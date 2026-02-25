@@ -14,8 +14,35 @@ datasource db {
 }
 
 model department {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id            String         @id @default(uuid())
+  name          String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  collaborators collaborator[]
+}
+
+model collaborator {
+  id             String     @id @default(uuid())
+  name           String
+  second_name    String
+  afiliationType afiliationType @default(ASELC)
+  departmentId   String
+  department     department @relation(fields: [departmentId], references: [id])
+  role           Role       @default(FACILITADOR)
+  isActive       Boolean    @default(true)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+enum afiliationType {
+  ASELC
+  TERCEIRIZADA
+  EXTERNO
+}
+
+enum Role {
+  FACILITADOR
+  FORMANDO
+  COLABORADOR
+  CONVIDADO
 }
