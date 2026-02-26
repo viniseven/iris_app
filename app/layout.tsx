@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SidebarApp from "./_components/SidebarApp";
-import { SidebarProvider } from "./_components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "./_components/ui/sidebar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,10 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={`${geistSans.variable} antialiased`}>
         <SidebarProvider>
           <SidebarApp />
+          <SidebarTrigger className="hover:cursor-pointer" />
           {children}
         </SidebarProvider>
       </body>
