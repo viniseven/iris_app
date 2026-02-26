@@ -1,8 +1,17 @@
-import { Building, ClipboardList, LayoutDashboard, Users } from "lucide-react";
+import {
+  Building,
+  ClipboardList,
+  LayoutDashboard,
+  LogOut,
+  Users,
+} from "lucide-react";
 import SidebarButton from "./SidebarButton";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Button } from "./ui/button";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenuItem,
 } from "./ui/sidebar";
@@ -40,6 +49,22 @@ export default function SidebarApp() {
             </SidebarButton>
           </SidebarMenuItem>
         </SidebarContent>
+        <SidebarFooter className="flex flex-row items-center justify-between bg-white-100">
+          <div className="flex items-center gap-2">
+            <Avatar className=" bg-gray-100">
+              <AvatarFallback>MV</AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-blue-200 text-sm">Marcus Vinícius</p>
+              <span className="text-gray-100 text-xs">
+                Analista de Sistemas
+              </span>
+            </div>
+          </div>
+          <Button title="Sair">
+            <LogOut className="text-blue-200" />
+          </Button>
+        </SidebarFooter>
       </Sidebar>
     </div>
   );
