@@ -10,7 +10,7 @@ export default function TitlePageButton({
   titleButton,
 }: TitlePageButtonProps) {
   return (
-    <Button className="bg-blue-200 text-white-100 hover:bg-gray-200">
+    <Button className="bg-button text-button-text hover:bg-gray-200">
       <Icon />
       {titleButton}
     </Button>
