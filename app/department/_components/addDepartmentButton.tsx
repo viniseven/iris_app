@@ -1,3 +1,5 @@
+"use client";
+
 import TitlePageButton from "@/app/_components/TitlePageButton";
 import {
   Dialog,
