@@ -14,7 +14,7 @@ export default function SidebarButton({ children, href }: ISidebarButtonProps) {
   return (
     <Button
       asChild
-      className={`hover:text-white-100 w-[90%] text-lg hover:bg-gray-200 ${pathname == href ? "text-white-100" : ""}`}
+      className={`hover:text-white-100 w-[90%] text-lg hover:bg-foreground-sidebar ${pathname == href ? "text-white-100 bg-foreground-sidebar" : ""}`}
       variant={pathname == href ? "secondary" : "ghost"}
     >
       <Link href={href} className="flex justify-start gap-2">

@@ -18,11 +18,11 @@ import {
 
 export default function SidebarApp() {
   return (
-    <Sidebar className="text-white-100 bg-blue-200 z-50 border-0">
+    <Sidebar className="text-foreground-sidebar bg-sidebar border-none">
       <SidebarHeader className="py-8 text-center text-3xl font-bold">
         IrisApp
       </SidebarHeader>
-      <SidebarContent className="ml-1 text-gray-100">
+      <SidebarContent className="ml-1 text-foreground-sidebar">
         <SidebarMenuItem>
           <SidebarButton href="/">
             <LayoutDashboard />
