@@ -9,7 +9,7 @@ export default function CollaboratorsPage() {
         title="Colaboradores"
         description="Gerencie colaboradores e facilitadores"
       />
-      <TitlePageButton iconButton={Plus} titleButton="Adicionar colaborador" />
+      <TitlePageButton iconButton={Plus} titleButton="Novo colaborador" />
     </div>
   );
 }
