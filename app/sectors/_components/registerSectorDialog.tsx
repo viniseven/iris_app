@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/app/_components/ui/dialog";
-import { Field, FieldLabel } from "@/app/_components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
@@ -19,7 +19,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 
 const formSectorSchema = z.object({
-  name: z.string().trim().min(1, { error: "Nome é obrigatório" }),
+  name: z.string().trim().min(1, "O nome é obrigatório"),
 });
 
 type FormSchema = z.infer<typeof formSectorSchema>;
@@ -55,7 +55,7 @@ export default function RegisterSectorDialog() {
           <Controller
             name="name"
             control={form.control}
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <Field>
                 <FieldLabel htmlFor={field.name}>Nome</FieldLabel>
                 <Input
@@ -64,6 +64,12 @@ export default function RegisterSectorDialog() {
                   placeholder="Insira o nome do setor"
                   autoComplete="off"
                 />
+                {fieldState.invalid && (
+                  <FieldError
+                    className="text-red-500"
+                    errors={[fieldState.error]}
+                  />
+                )}
               </Field>
             )}
           />
