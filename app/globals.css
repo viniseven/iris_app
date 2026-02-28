@@ -26,13 +26,13 @@
   --breakpoint-desktop: 1280px;
 
   --color-sidebar: oklch(98.4% 0.003 247.858);
-  --color-foreground-sidebar: oklch(12.9% 0.042 264.695);
+  --color-foreground-sidebar: oklch(27.9% 0.041 260.031);
 
   --color-form: oklch(98.4% 0.003 247.858);
 
   --color-app: oklch(86.9% 0.022 252.894);
 
-  --color-button: oklch(12.9% 0.042 264.695);
+  --color-button: oklch(27.9% 0.041 260.031);
   --color-button-text: oklch(98.4% 0.003 247.858);
 
   --color-text: oklch(12.9% 0.042 264.695);
