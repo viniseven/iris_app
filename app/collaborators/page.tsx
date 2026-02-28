@@ -1,6 +1,5 @@
-import { Plus } from "lucide-react";
 import PageTitle from "../_components/PageTitle";
-import TitlePageButton from "../_components/TitlePageButton";
+import AddCollaboratorsButton from "./_components/addCollaboratorButton";
 
 export default function CollaboratorsPage() {
   return (
@@ -9,7 +8,7 @@ export default function CollaboratorsPage() {
         title="Colaboradores"
         description="Gerencie colaboradores e facilitadores"
       />
-      <TitlePageButton iconButton={Plus} titleButton="Novo colaborador" />
+      <AddCollaboratorsButton />
     </div>
   );
 }
