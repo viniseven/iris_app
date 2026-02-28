@@ -40,6 +40,8 @@
   --color-white-100: var(--white-100);
   --color-white-200: var(--white-200);
 
+  --color-input-border: oklch(92.9% 0.013 255.508);
+
   --color-background-dark: var(--background-dark);
 
   --color-header-light: var(--header-light);
