@@ -1,12 +1,15 @@
 import { Plus } from "lucide-react";
-import TitlePageButton from "../_components/ButtonComponent";
 import PageTitle from "../_components/PageTitle";
+import { Button } from "../_components/ui/button";
 
 export default function ThemesPage() {
   return (
     <div className="flex flex-col mb-6 p-4 w-full gap-2 tablet:flex-row tablet:justify-between tablet:gap-0">
       <PageTitle title="Temas" description="Gerencie temas de treinamento" />
-      <TitlePageButton iconButton={Plus} titleButton="Novo tema" />
+      <Button>
+        <Plus />
+        Novo tema
+      </Button>
     </div>
   );
 }

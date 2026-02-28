@@ -1,6 +1,6 @@
 "use client";
 
-import TitlePageButton from "@/app/_components/ButtonComponent";
+import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -15,7 +15,10 @@ export default function AddCollaboratorButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <TitlePageButton iconButton={Plus} titleButton="Novo setor" />
+        <Button>
+          <Plus />
+          Novo setor
+        </Button>
       </DialogTrigger>
       <DialogContent className="bg-form text-text border-none!">
         <DialogHeader>

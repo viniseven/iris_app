@@ -1,11 +1,9 @@
 "use client";
 
-import {
-  default as ButtonComponent,
-  default as HeaderButton,
-} from "@/app/_components/ButtonComponent";
+import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -28,6 +26,7 @@ type FormSchema = z.infer<typeof formSectorSchema>;
 
 export default function RegisterSectorDialog() {
   const form = useForm<FormSchema>({
+    shouldUnregister: true,
     resolver: zodResolver(formSectorSchema),
     defaultValues: {
       name: "",
@@ -40,7 +39,10 @@ export default function RegisterSectorDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <HeaderButton iconButton={Plus} titleButton="Novo setor" />
+        <Button>
+          <Plus />
+          Novo setor
+        </Button>
       </DialogTrigger>
       <DialogContent className="bg-form text-text border-none!">
         <DialogHeader>
@@ -66,7 +68,10 @@ export default function RegisterSectorDialog() {
             )}
           />
           <DialogFooter className="mt-6">
-            <ButtonComponent type="submit" titleButton="Cadastrar" />
+            <DialogClose asChild>
+              <Button variant="secondary">Cancelar</Button>
+            </DialogClose>
+            <Button type="submit">Cadastrar</Button>
           </DialogFooter>
         </form>
       </DialogContent>
