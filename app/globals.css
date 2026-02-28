@@ -20,6 +20,23 @@
 }
 
 @theme inline {
+  --breakpoint-smartphone: 360px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1280px;
+
+  --color-sidebar: oklch(98.4% 0.003 247.858);
+  --color-foreground-sidebar: oklch(12.9% 0.042 264.695);
+
+  --color-form: oklch(98.4% 0.003 247.858);
+
+  --color-app: oklch(86.9% 0.022 252.894);
+
+  --color-button: oklch(12.9% 0.042 264.695);
+  --color-button-text: oklch(98.4% 0.003 247.858);
+
+  --color-text: oklch(12.9% 0.042 264.695);
+
   --color-white-100: var(--white-100);
   --color-white-200: var(--white-200);
 
@@ -49,6 +66,6 @@
     @apply m-0 p-0;
   }
   body {
-    @apply bg-white-200 min-h-screen w-full;
+    @apply bg-app min-h-screen w-full;
   }
 }
