@@ -1,6 +1,5 @@
 import PageTitle from "@/app/_components/PageTitle";
-
-import AddSectorButton from "./_components/addSectorButton";
+import RegisterSectorDialog from "./_components/registerSectorDialog";
 
 export default function SectorsPage() {
   return (
@@ -9,7 +8,7 @@ export default function SectorsPage() {
         title="Setores"
         description="Gerencie os setores cadastrados"
       />
-      <AddSectorButton />
+      <RegisterSectorDialog />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
+import TitlePageButton from "../_components/ButtonComponent";
 import PageTitle from "../_components/PageTitle";
-import TitlePageButton from "../_components/TitlePageButton";
 
 export default function ThemesPage() {
   return (

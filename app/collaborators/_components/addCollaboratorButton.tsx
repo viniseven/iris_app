@@ -1,6 +1,6 @@
 "use client";
 
-import TitlePageButton from "@/app/_components/TitlePageButton";
+import TitlePageButton from "@/app/_components/ButtonComponent";
 import {
   Dialog,
   DialogContent,
