@@ -14,6 +14,7 @@ import {
 } from "@/app/_components/ui/dialog";
 import { Field, FieldError, FieldLabel } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
+import { getSector } from "@/app/_data_access/sector";
 import { FormSchema, formSectorSchema } from "@/app/_schemas/sector";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, Plus } from "lucide-react";
@@ -32,13 +33,21 @@ export default function RegisterSectorDialog() {
     },
   });
   async function onSubmit(formData: FormSchema) {
-    const result = await createSector(formData);
+    try {
+      const findSector = await getSector(formData);
 
-    if (result.success) {
-      setDialogIsOpen(false);
-      toast.success("Setor cadastrado com sucesso");
-    } else {
-      toast.error(result.message);
+      if (findSector) {
+        return toast.error("Setor já cadastrado");
+      }
+      const response = await createSector(formData);
+
+      if (response.success) {
+        toast.success("Setor cadastrado");
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      toast.error("Ocorreu um erro interno, tente novamente");
     }
   }
 
