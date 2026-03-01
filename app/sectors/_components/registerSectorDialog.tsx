@@ -1,5 +1,6 @@
 "use client";
 
+import createSector from "@/app/_actions/sector/createSector";
 import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
@@ -13,18 +14,16 @@ import {
 } from "@/app/_components/ui/dialog";
 import { Field, FieldError, FieldLabel } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
+import { FormSchema, formSectorSchema } from "@/app/_schemas/sector";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
+import { Loader2Icon, Plus } from "lucide-react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
-
-const formSectorSchema = z.object({
-  name: z.string().trim().min(1, "O nome é obrigatório"),
-});
-
-type FormSchema = z.infer<typeof formSectorSchema>;
+import { toast } from "sonner";
 
 export default function RegisterSectorDialog() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
   const form = useForm<FormSchema>({
     shouldUnregister: true,
     resolver: zodResolver(formSectorSchema),
@@ -32,12 +31,19 @@ export default function RegisterSectorDialog() {
       name: "",
     },
   });
-  function onSubmit(data: FormSchema) {
-    console.log(data);
+  async function onSubmit(formData: FormSchema) {
+    const result = await createSector(formData);
+
+    if (result.success) {
+      setDialogIsOpen(false);
+      toast.success("Setor cadastrado com sucesso");
+    } else {
+      toast.error(result.message);
+    }
   }
 
   return (
-    <Dialog>
+    <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
       <DialogTrigger asChild>
         <Button>
           <Plus />
@@ -77,7 +83,12 @@ export default function RegisterSectorDialog() {
             <DialogClose asChild>
               <Button variant="secondary">Cancelar</Button>
             </DialogClose>
-            <Button type="submit">Cadastrar</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting && (
+                <Loader2Icon className="animate-spin" />
+              )}
+              Cadastrar
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
