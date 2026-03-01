@@ -8,13 +8,6 @@ export default async function createSector(formData: FormSchema) {
   formSectorSchema.parse(formData);
   const { name } = formData;
   try {
-    const sectorExist = await db.department.findUnique({
-      where: { name },
-    });
-
-    if (sectorExist) {
-      return { success: false, message: "Setor já cadastrado" };
-    }
     await db.department.create({
       data: {
         name,
