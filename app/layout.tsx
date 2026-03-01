@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SidebarApp from "./_components/SidebarApp";
 import { SidebarProvider, SidebarTrigger } from "./_components/ui/sidebar";
+import { Toaster } from "./_components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,6 +33,8 @@ export default function RootLayout({
           <SidebarTrigger className="hover:cursor-pointer" />
           {children}
         </SidebarProvider>
+
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
