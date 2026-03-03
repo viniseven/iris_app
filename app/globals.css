@@ -32,7 +32,9 @@
 
   --color-form: oklch(98.4% 0.003 247.858);
 
-  --color-app: oklch(86.9% 0.022 252.894);
+  --color-app: oklch(96.8% 0.007 247.896);
+
+  --color-button-options: oklch(70.4% 0.04 256.788);
 
   --color-button: oklch(27.9% 0.041 260.031);
   --color-button-text: oklch(98.4% 0.003 247.858);
