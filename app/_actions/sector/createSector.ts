@@ -14,8 +14,7 @@ export default async function createSector(formData: FormSchema) {
       },
     });
     revalidatePath("/sectors");
-    return { success: true, message: "Setor criado com sucesso" };
   } catch (error) {
-    return { success: false, message: "Ocorreu um erro, tente novamente" };
+    return { error };
   }
 }

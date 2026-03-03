@@ -37,16 +37,14 @@ export default function RegisterSectorDialog() {
       const findSector = await getSector(formData);
 
       if (findSector) {
+        setDialogIsOpen(false);
         return toast.error("Setor já cadastrado");
       }
-      const response = await createSector(formData);
-
-      if (response.success) {
-        toast.success("Setor cadastrado");
-      } else {
-        toast.error(response.message);
-      }
+      await createSector(formData);
+      setDialogIsOpen(false);
+      toast.success("Setor cadastrado com sucesso");
     } catch (error) {
+      setDialogIsOpen(false);
       toast.error("Ocorreu um erro interno, tente novamente");
     }
   }
