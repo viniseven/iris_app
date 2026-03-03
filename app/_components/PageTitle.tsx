@@ -3,7 +3,7 @@ interface IPageTitleProps {
   description: string;
 }
 
-export default function PageTitle({ title, description }: IPageTitleProps) {
+export default function PageHeader({ title, description }: IPageTitleProps) {
   return (
     <div className="flex justify-between ">
       <div>

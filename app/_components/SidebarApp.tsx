@@ -58,7 +58,7 @@ export default function SidebarApp() {
             <span className="text-gray-100 text-xs">Analista de Sistemas</span>
           </div>
         </div>
-        <Button title="Sair">
+        <Button title="Sair" variant="ghost">
           <LogOut className="text-blue-200" />
         </Button>
       </SidebarFooter>

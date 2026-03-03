@@ -1,6 +1,6 @@
 "use client";
 
-import TitlePageButton from "@/app/_components/TitlePageButton";
+import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,15 +11,18 @@ import {
 } from "@/app/_components/ui/dialog";
 import { Plus } from "lucide-react";
 
-export default function AddDepartmentButton() {
+export default function AddCollaboratorButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <TitlePageButton iconButton={Plus} titleButton="Novo setor" />
+        <Button>
+          <Plus />
+          Novo setor
+        </Button>
       </DialogTrigger>
       <DialogContent className="bg-form text-text border-none!">
         <DialogHeader>
-          <DialogTitle>Cadastrar setor</DialogTitle>
+          <DialogTitle>Cadastrar colaborador</DialogTitle>
           <DialogDescription>Insira as informações abaixo</DialogDescription>
         </DialogHeader>
       </DialogContent>
