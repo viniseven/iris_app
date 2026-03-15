@@ -1,6 +1,6 @@
 "use client";
 
-import { Building, EllipsisVertical, Pencil } from "lucide-react";
+import { Building, EllipsisVertical } from "lucide-react";
 import DeleteSectorDialog from "../sectors/_components/deleteSectorDialog";
 import { Button } from "./ui/button";
 import { Card, CardAction, CardHeader, CardTitle } from "./ui/card";
@@ -37,14 +37,7 @@ export default function CardComponent({ title, id }: CardComponentProps) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border-none bg-card text-button-options">
-                <DropdownMenuItem className="p-2">
-                  <Pencil />
-                  Editar
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onSelect={(e) => e.preventDefault()}
-                  className="p-0"
-                >
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                   <DeleteSectorDialog id={id} />
                 </DropdownMenuItem>
               </DropdownMenuContent>

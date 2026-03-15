@@ -1,13 +1,13 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { FormSchema } from "../_schemas/sector";
 import { db } from "../lib/prisma";
+import { ISector } from "../types/sector";
 
-export async function getSector(data: FormSchema) {
+export async function getSector({ name }: ISector) {
   try {
     const sector = await db.department.findUnique({
-      where: { name: data.name },
+      where: { name },
     });
     return sector;
   } catch (error) {
@@ -21,8 +21,8 @@ export async function getAllSectors() {
     if (sectors) {
       return sectors;
     }
-    return [];
     revalidatePath("/sectors");
+    return [];
   } catch (error) {
     return [];
   }
