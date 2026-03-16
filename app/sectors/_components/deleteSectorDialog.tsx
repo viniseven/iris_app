@@ -25,8 +25,6 @@ export default function DeleteSectorDialog({ id }: DeleteSectorDialogProps) {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
   async function handleDeleteSector() {
-    console.log("tentando");
-
     try {
       await deleteSector(id);
 
@@ -40,8 +38,8 @@ export default function DeleteSectorDialog({ id }: DeleteSectorDialogProps) {
 
   return (
     <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" className="border-none shadow-none p-2!">
+      <DialogTrigger asChild className="p=0">
+        <Button variant="outline" className="border-none shadow-none">
           <Trash2 />
           Excluir
         </Button>
