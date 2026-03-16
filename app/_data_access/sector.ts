@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { db } from "../lib/prisma";
-import { ISector } from "../types/sector";
+import { ISector } from "../types/types";
 
 export async function getSector({ name }: ISector) {
   try {
