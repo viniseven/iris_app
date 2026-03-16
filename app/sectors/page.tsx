@@ -20,7 +20,7 @@ export default async function SectorsPage() {
         {resultSectors.map((sector) => (
           <CardComponent
             key={sector.id}
-            title={sector.name.replaceAll("_", " ").toUpperCase()}
+            name={sector.name.replaceAll("_", " ").toUpperCase()}
             id={sector.id}
           />
         ))}

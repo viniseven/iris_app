@@ -1,4 +1,6 @@
-import createSector from "@/app/_actions/sector/createSector";
+"use client";
+
+import { upsertSector } from "@/app/_actions/sector/upsertSector";
 import { Button } from "@/app/_components/ui/button";
 import {
   DialogClose,
@@ -17,28 +19,45 @@ import { Loader2Icon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-interface UpsertSectorDialog {
+interface UpsertSectorDialogProps {
+  defaultValues?: FormSchema;
   onSuccess?: () => void;
 }
 
-export default function UpsertSectorDialog({ onSuccess }: UpsertSectorDialog) {
+export default function UpsertSectorDialog({
+  defaultValues,
+  onSuccess,
+}: UpsertSectorDialogProps) {
   const form = useForm<FormSchema>({
     shouldUnregister: true,
     resolver: zodResolver(formSectorSchema),
-    defaultValues: {
+    mode: "onBlur",
+    reValidateMode: "onSubmit",
+    defaultValues: defaultValues ?? {
       name: "",
     },
   });
+
+  const isEditing = !!defaultValues;
   async function onSubmit(formData: FormSchema) {
     try {
       const findSector = await getSector(formData);
 
       if (findSector) {
+        onSuccess?.();
         return toast.error("Setor já cadastrado");
       }
-      await createSector(formData);
-      onSuccess?.();
+      const dataForm = {
+        name: formData.name.trim().toLowerCase().replace(/\s+/g, "_"),
+      };
 
+      await upsertSector({ ...dataForm, id: defaultValues?.id });
+      if (isEditing) {
+        toast.success("Dados atualizados com sucesso");
+        onSuccess?.();
+        return;
+      }
+      onSuccess?.();
       toast.success("Setor cadastrado com sucesso");
     } catch (error) {
       toast.error("Ocorreu um erro interno, tente novamente");
@@ -47,9 +66,13 @@ export default function UpsertSectorDialog({ onSuccess }: UpsertSectorDialog) {
   return (
     <DialogContent className="bg-form text-text border-none!">
       <DialogHeader>
-        <DialogTitle>Cadastrar setor</DialogTitle>
+        <DialogTitle>
+          {isEditing ? "Editar setor" : "Cadastrar setor"}
+        </DialogTitle>
         <DialogDescription className="text-gray-100">
-          Insira as informações abaixo
+          {isEditing
+            ? "Edite as informações abaixo"
+            : "Insira as informações abaixo"}
         </DialogDescription>
       </DialogHeader>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -82,7 +105,7 @@ export default function UpsertSectorDialog({ onSuccess }: UpsertSectorDialog) {
             {form.formState.isSubmitting && (
               <Loader2Icon className="animate-spin" />
             )}
-            Cadastrar
+            {isEditing ? "Editar" : "Cadastrar"}
           </Button>
         </DialogFooter>
       </form>

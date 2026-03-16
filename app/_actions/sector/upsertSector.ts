@@ -4,14 +4,14 @@ import { FormSchema, formSectorSchema } from "@/app/_schemas/sector";
 import { db } from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export default async function createSector(formData: FormSchema) {
+export async function upsertSector(formData: FormSchema) {
   formSectorSchema.parse(formData);
-  const { name } = formData;
+
   try {
-    await db.department.create({
-      data: {
-        name,
-      },
+    await db.department.upsert({
+      where: { id: formData.id ?? "" },
+      update: { name: formData.name },
+      create: { name: formData.name },
     });
     revalidatePath("/sectors");
   } catch (error) {
