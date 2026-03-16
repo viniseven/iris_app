@@ -1,11 +1,11 @@
 "use server";
 
-import { FormSchema, formSectorSchema } from "@/app/_schemas/sector";
+import { FormSchema, formCreateSectorSchema } from "@/app/_schemas/sector";
 import { db } from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function upsertSector(formData: FormSchema) {
-  formSectorSchema.parse(formData);
+  formCreateSectorSchema.parse(formData);
 
   try {
     await db.department.upsert({

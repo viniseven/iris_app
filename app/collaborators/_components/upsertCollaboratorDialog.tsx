@@ -1,6 +1,3 @@
-"use client";
-
-import { upsertSector } from "@/app/_actions/sector/upsertSector";
 import { Button } from "@/app/_components/ui/button";
 import {
   DialogClose,
@@ -12,57 +9,56 @@ import {
 } from "@/app/_components/ui/dialog";
 import { Field, FieldError, FieldLabel } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
-import { getSector } from "@/app/_data_access/sector";
-import { formCreateSectorSchema, FormSchema } from "@/app/_schemas/sector";
+import { getCollaborator } from "@/app/_data_access/collaborator";
+import {
+  FormSchema,
+  formCreateCollaboratorSchema,
+} from "@/app/_schemas/collaborator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-interface UpsertSectorDialogProps {
+interface UpsertCollaboratorDialogProps {
   defaultValues?: FormSchema;
   onSuccess?: () => void;
 }
 
-export default function UpsertSectorDialog({
+export function UpsertCollaboratorDialog({
   defaultValues,
   onSuccess,
-}: UpsertSectorDialogProps) {
+}: UpsertCollaboratorDialogProps) {
   const form = useForm<FormSchema>({
     shouldUnregister: true,
-    resolver: zodResolver(formCreateSectorSchema),
+    resolver: zodResolver(formCreateCollaboratorSchema),
     mode: "onBlur",
     reValidateMode: "onSubmit",
     defaultValues: defaultValues ?? {
       name: "",
+      secondName: "",
+      afiliationType: "ASELC",
+      department: "",
+      role: "COLABORADOR",
+      isActive: true,
+      registrationNumber: 0,
     },
   });
-
   const isEditing = !!defaultValues;
   async function onSubmit(formData: FormSchema) {
     try {
-      const findSector = await getSector(formData);
+      const findCollaborator = await getCollaborator(formData)
 
-      if (findSector) {
+      if(findCollaborator){
         onSuccess?.();
-        return toast.error("Setor já cadastrado");
+        return toast.error("Colaborador já cadastrado");
       }
-      const dataForm = {
-        name: formData.name.trim().toLowerCase().replace(/\s+/g, "_"),
-      };
-
-      await upsertSector({ ...dataForm, id: defaultValues?.id });
-      if (isEditing) {
-        toast.success("Dados atualizados com sucesso");
-        onSuccess?.();
-        return;
-      }
-      onSuccess?.();
-      toast.success("Setor cadastrado com sucesso");
-    } catch (error) {
+     
+     }catch(error){
       toast.error("Ocorreu um erro interno, tente novamente");
-    }
+     }
   }
+
+}
   return (
     <DialogContent className="bg-form text-text border-none!">
       <DialogHeader>
